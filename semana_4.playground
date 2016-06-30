@@ -1,0 +1,52 @@
+import UIKit
+enum Velocidades : Int {
+    case Apagado = 0, VelocidadBaja = 20, VelocidadMedia = 50, VelocidadAlta = 120
+
+    init ( vel : Velocidades){
+        self = vel
+    }
+}
+
+class Auto {
+    var velocidad : Velocidades
+
+    init ( ){
+        velocidad = Velocidades.Apagado
+    }
+
+    func cambioDeVelocidad( ) -> ( actual : Int, velocidadEnCadena: String){
+        let actual : Int = velocidad.rawValue
+        var velocidadEnCadena : String = ""
+
+        switch actual{
+            case 0:
+                velocidad = Velocidades.VelocidadBaja
+                velocidadEnCadena = "Velocidad Baja"
+            case 20:
+                velocidad = Velocidades.VelocidadMedia
+                velocidadEnCadena = "Velocidad Media"
+            case 50:
+                velocidad = Velocidades.VelocidadAlta
+                velocidadEnCadena = "Velocidad Alta"
+            case 120:
+                velocidad = Velocidades.VelocidadMedia
+                velocidadEnCadena = "Velocidad Media"
+            default : 
+                velocidad = Velocidades.Apagado
+                velocidadEnCadena = "Apagado"
+        }
+        let resultado=(actual,velocidadEnCadena)
+        return resultado
+    }
+
+}
+
+var ibiza = Auto()
+
+var tupla = ibiza.cambioDeVelocidad()
+print ("\(tupla.actual) , \(tupla.velocidadEnCadena)")
+
+for i in 1...20{
+    tupla = ibiza.cambioDeVelocidad()
+    print ("\(tupla.actual) , \(tupla.velocidadEnCadena)")
+}
